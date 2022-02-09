@@ -129,16 +129,19 @@ sólo tenemos que cambiar la variable ``chosen_theme`` de nuestro ``rc.lua``
 .Te recomiendo sobreescribir tu archivo ``theme.lua`` con la plantilla de ``awesome-copycats``, porque
 luego se vuelve más fácil editar los temas y atajos de nuestro administrador de ventanas.
 
-Just do the following:
+Ahora solo necesitas seguir los siguientes pasos:
 
 .. code-block:: shell
 
     $ cd ~/.config/awesome
     $ cp rc.lua.template rc.lua
 
-Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, do your settings, and restart Awesome (``Mod4 + ctrl + r``).
+Ahora simplemente debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua`` con tu tema preferido,
+ puedes realizar tu configuración personal, y luego para aplicar los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
+Comúnmente la tecla ``Mod4`` es la tecla que se encuentra entre Ctrl y Alt en la  parte inferior izquierda del teclado.
 
-To customize a theme, head over to ``themes/$chosen_theme/theme.lua``.
+Para modificar un tema debes hacerlo en este archivo  ``themes/$tema/theme.lua``. 
+Generalmente se encuentra en ``/home/nuestrousuario/.config/awesome/themes/$tema/theme.lua`` .
 
 Otherwise, if you want to be synced with upstream, modify the theme path in ``rc.lua`` like this:
 
