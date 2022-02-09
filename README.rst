@@ -124,9 +124,9 @@ En ``rc.lua`` podemos:
 * Configurar artilugios para las ventanas (más conocido como Widgets)
 * Definir cajas para notificaciones y más ajustes para la pantalla
 
-En nuestro  ``theme.lua``(que generalmente lo podemos encontrar en /home/minombredeusuario/.config/awesome),
-sólo tenemos que cambiar la variable ``chosen_theme``
-de nuestro ``rc.lua``. Te recomiendo sobreescribir tu archivo ``theme.lua`` con la plantilla de ``awesome-copycats``, porque
+En nuestro  ``theme.lua`` (que generalmente lo podemos encontrar en /home/minombredeusuario/.config/awesome),
+sólo tenemos que cambiar la variable ``chosen_theme`` de nuestro ``rc.lua`` 
+.Te recomiendo sobreescribir tu archivo ``theme.lua`` con la plantilla de ``awesome-copycats``, porque
 luego se vuelve más fácil editar los temas y atajos de nuestro administrador de ventanas.
 
 Just do the following:
