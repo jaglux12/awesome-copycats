@@ -1,21 +1,21 @@
-Awesome WM Copycats
+Awesome WM Copycats (editado por Jaglux12)
 ===================
 
 -------------------------
-Themes for Awesome WM 4.x
+Temas for Awesome WM 4.x
 -------------------------
 
-:Author: Luca CPZ
-:Version: git
-:License: BY-NC-SA_
-:Source: https://github.com/lcpz/awesome-copycats
+:Creador: Luca CPZ
+:Versión: git
+:Licencia: BY-NC-SA_
+:Fuente Original: https://github.com/lcpz/awesome-copycats
 
 Description
 ===========
 
-A set of themes for the Awesome_ window manager, version 4.x.
+Pack de temas para  Awesome_ window manager, version 4.x.
 
-See branches_ for previous versions.
+Mira las  branches_ para versiones anteriores.
 
 Purpose
 =======
@@ -48,14 +48,14 @@ Features
 - On-the-fly useless gaps resize
 - Dynamic tagging
 
-Gallery
+Capturas de pantalla
 =======
 
-**Multicolor**, inspired by lucamanni_
+**Multicolor**, inspirado por  lucamanni_
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow**, porting of romockee_'s
+**Powerarrow**, portado de  romockee_'s
 
 .. image:: http://dotshare.it/public/images/uploads/1453.png
 
@@ -63,7 +63,11 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/649.jpg
 
-**Steamburn**, porting of ok100_'s dwm
+**Powerarrow Colors**
+
+
+
+**Steamburn**, portado de  ok100_'s dwm
 
 .. image:: http://dotshare.it/public/images/uploads/648.png
 
@@ -79,19 +83,19 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/606.png
 
-**Holo**, requested by amouly_
+**Holo**, pedido por amouly_
 
 .. image:: http://dotshare.it/public/images/uploads/651.jpg
 
-**Copland**, inspired by foozer_
+**Copland**, inspirado en foozer_
 
 .. image:: http://dotshare.it/public/images/uploads/655.png
 
-**Vertex**, requested by swordfischer_
+**Vertex**, pedido por swordfischer_
 
 .. image:: http://dotshare.it/public/images/uploads/1432.jpg
 
-Installation
+Instalación
 ============
 
 .. code-block:: shell
@@ -99,28 +103,31 @@ Installation
     git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
     mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 
-In case you do not want the Git files, use the following as the second command:
+Si no quieres los archivos Git, utiliza el siguiente comando, como reemplazo del segundo que ejecutaste anteriormente.
 
 .. code-block:: shell
 
     mv -bv awesome-copycats/* ~/.config/awesome; rm -rf awesome-copycats
 
-Usage
+Utilización
 =====
 
-The modular structure allows to
+Gracias a la estructura modular de awesome-copycats, nos permite:
 
-* set variables
-* define startup processes
-* change keybindings and layouts
-* set client properties
+* Cambiar variables de forma sencilla e intuitiva
+* Definir procesos de inicio
+* Modificar atajos y disposiciones de ventanas (layouts)
+* Establecer nuevas propiedades del cliente
 
-in ``rc.lua``, and
+En ``rc.lua`` podemos:
 
-* configure widgets
-* define wiboxes and screen settings
+* Configurar artilugios para las ventanas (más conocido como Widgets)
+* Definir cajas para notificaciones y más ajustes para la pantalla
 
-in ``theme.lua``, so that you just need to change ``chosen_theme`` variable in ``rc.lua`` to preserve your preferences *and* switch the theme, instead of having file redundancy.
+En nuestro  ``theme.lua``(que generalmente lo podemos encontrar en /home/minombredeusuario/.config/awesome),
+sólo tenemos que cambiar la variable ``chosen_theme``
+de nuestro ``rc.lua``. Te recomiendo sobreescribir tu archivo ``theme.lua`` con la plantilla de ``awesome-copycats``, porque
+luego se vuelve más fácil editar los temas y atajos de nuestro administrador de ventanas.
 
 Just do the following:
 
@@ -149,7 +156,7 @@ Notes
 
 Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies_. In particular, mail_ and weather_ widgets have **mandatory** arguments.
 
-The fonts used in the screenshots are: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
+The fonts used in the screenshots are: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark,Powerarrow Colors), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
 
 As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
 
