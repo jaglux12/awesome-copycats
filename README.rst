@@ -2,7 +2,7 @@ Awesome WM Copycats (editado por Jaglux12)
 ===================
 
 -------------------------
-Temas for Awesome WM 4.x
+Temas para Awesome WM 4.x
 -------------------------
 
 :Creador: Luca CPZ
@@ -10,14 +10,14 @@ Temas for Awesome WM 4.x
 :Licencia: BY-NC-SA_
 :Fuente Original: https://github.com/lcpz/awesome-copycats
 
-Description
+Descripción
 ===========
 
 Pack de temas para  Awesome_ window manager, version 4.x.
 
 Mira las  branches_ para versiones anteriores.
 
-Purpose
+Propósito
 =======
 
 The main purpose of this repository is to spread ready to use configurations, which can also serve as a cookbook for customisation.
@@ -51,11 +51,11 @@ Features
 Capturas de pantalla
 =======
 
-**Multicolor**, inspirado por  lucamanni_
+**Multicolor**, inspirado en  lucamanni_
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow**, portado de  romockee_'s
+**Powerarrow**, portado desde romockee_'s
 
 .. image:: http://dotshare.it/public/images/uploads/1453.png
 
@@ -67,7 +67,7 @@ Capturas de pantalla
 
 
 
-**Steamburn**, portado de  ok100_'s dwm
+**Steamburn**, portado desde ok100_'s dwm
 
 .. image:: http://dotshare.it/public/images/uploads/648.png
 
