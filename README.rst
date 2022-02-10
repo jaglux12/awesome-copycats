@@ -111,7 +111,7 @@ Si no quieres los archivos Git, utiliza el siguiente comando, como reemplazo del
 
     mv -bv awesome-copycats/* ~/.config/awesome; rm -rf awesome-copycats
 
-Utilización
+Configuración del tema
 =====
 
 Gracias a la estructura modular de awesome-copycats, nos permite:
@@ -134,8 +134,8 @@ Ahora solo necesitas seguir los siguientes pasos:
     $ cp rc.lua.template rc.lua
 
 Ahora simplemente debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua``
- con tu tema preferido, puedes realizar tu configuración personal, y luego para aplicar
- los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
+con tu tema preferido, puedes realizar tu configuración personal, y luego para aplicar
+los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
 
 Comúnmente la tecla ``Mod4`` es la tecla que se encuentra entre Ctrl y Alt en la  parte inferior izquierda del teclado.
 
