@@ -136,8 +136,7 @@ Ahora solo necesitas seguir los siguientes pasos:
     $ cd ~/.config/awesome
     $ cp rc.lua.template rc.lua
 
-Ahora simplemente debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua`` con tu tema preferido,
- puedes realizar tu configuración personal, y luego para aplicar los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
+Ahora simplemente debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua`` con tu tema preferido, puedes realizar tu configuración personal, y luego para aplicar los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
 Comúnmente la tecla ``Mod4`` es la tecla que se encuentra entre Ctrl y Alt en la  parte inferior izquierda del teclado.
 
 Para modificar un tema debes hacerlo en este archivo  ``themes/$tema/theme.lua``. 
