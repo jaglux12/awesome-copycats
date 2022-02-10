@@ -178,6 +178,10 @@ Donde,  ``theme-personal.lua`` representa tu archivo de modificaciones.
 
 De esta manera, puedes hacer ``git pull`` en cualquier momento.
 
+Atajos
+=====
+Para utilizar adecuadamente esta gama de temas
+
 Notes
 =====
 
