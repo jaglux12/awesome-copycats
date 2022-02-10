@@ -58,17 +58,13 @@ Capturas de pantalla
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow**, portado desde romockee_'s
+**Powercolors**, portado desde romockee_'s
 
 .. image:: http://dotshare.it/public/images/uploads/1453.png
 
 **Powerarrow Dark**
 
 .. image:: http://dotshare.it/public/images/uploads/649.jpg
-
-**Powerainbow**
-
-
 
 **Steamburn**, portado desde ok100_'s dwm
 
@@ -187,7 +183,7 @@ Notes
 
 Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies_. In particular, mail_ and weather_ widgets have **mandatory** arguments.
 
-Las fuentes utilizadas en las capturas de pantall son: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark,Powerainbow), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
+Las fuentes utilizadas en las capturas de pantall son: Terminus_ (Multicolor, Powercolors, Powerarrow Dark,Powerainbow), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
 
 As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
 
