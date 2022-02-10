@@ -125,12 +125,7 @@ En ``rc.lua`` podemos:
 
 * Configurar artilugios para las ventanas (más conocido como Widgets)
 * Definir cajas para notificaciones y más ajustes para la pantalla
-
-En nuestro  ``theme.lua`` (que generalmente lo podemos encontrar en /home/minombredeusuario/.config/awesome),
-sólo tenemos que cambiar la variable ``chosen_theme`` de nuestro ``rc.lua`` 
-.Te recomiendo sobreescribir tu archivo ``theme.lua`` con la plantilla de ``awesome-copycats``, porque
-luego se vuelve más fácil editar los temas y atajos de nuestro administrador de ventanas.
-
+ 
 Ahora solo necesitas seguir los siguientes pasos:
 
 .. code-block:: shell
@@ -138,7 +133,10 @@ Ahora solo necesitas seguir los siguientes pasos:
     $ cd ~/.config/awesome
     $ cp rc.lua.template rc.lua
 
-Ahora simplemente debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua`` con tu tema preferido, puedes realizar tu configuración personal, y luego para aplicar los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
+Ahora simplemente debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua``
+ con tu tema preferido, puedes realizar tu configuración personal, y luego para aplicar
+ los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
+
 Comúnmente la tecla ``Mod4`` es la tecla que se encuentra entre Ctrl y Alt en la  parte inferior izquierda del teclado.
 
 Para modificar un tema debes hacerlo en este archivo  ``themes/$tema/theme.lua``. 
@@ -160,7 +158,7 @@ Notes
 
 Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies_. In particular, mail_ and weather_ widgets have **mandatory** arguments.
 
-The fonts used in the screenshots are: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark,Powerarrow Colors), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
+Las fuentes utilizadas en las capturas de pantall son: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark,Powerarrow Colors), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
 
 As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
 
