@@ -26,28 +26,29 @@ El propósito principal de este repositorio es compartir temas listos para utili
 El objetivo secundario es compartir nuevos temas, únicamente cuando consituyan
 diferentes diseños en la interfaz de usuario.
 
-Features
+Características
 ========
 
-- Modularity
-- Autohide widgets
-- Autostart windowless processes
-- Fast MPD and volume shortcuts (first time this trick has been used in Awesome)
-- Shortcuts for copying to the clipboard, toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
-- Quake drop-down terminal
-- Calendar with current day highlighted and months switch with a click/scroll
-- Notifications for new mails, current song, volume level, hdd critical state, low battery
-- OpenWeatherMap integration
-- Net carrier status notifier
-- Symbolic tag names
-- DWM-like textual layoutbox
-- Cairo wibar
-- Custom layouts
-- No borders when there's only one visible client
-- Freedesktop.org compliant menu and desktop icons
-- Vi-like client focus
-- Non-empty tag browsing
-- On-the-fly useless gaps resize
+- Modularidad
+- Permite ocuptar widgets automáticamente
+- Procesos de inicio automático
+- MPD rápido y atajos para el volúmen
+- Atajos para copiar al portapapeles,
+- Alternar wiboxes, ventanas emergentes para widgets, capturas de pantalla, mover y ampliar ventanas de aplicaciones
+- Terminal desplegable de Quake
+- Calendario con el día actual resaltado y los meses pueden cambiarse con un desplazamiento
+- Notificaciones de nuevos correos electrónicos, música que estás escuchando, nivel del volúmen, estado del disco y batería baja
+- Integración con OpenWeatherMap
+- Permite notificar el estado del operador de red
+- Integración con símbolos para su utilización en nombres
+- Cuadro para el diseño de texto similar a DWM
+- Barra de widgets Cairo
+- Disposiciones de ventana personalizadas
+- No son visibles los bordes de una ventana, cuando hay una sola activa
+- Iconos de escritorio y menús compatibles con Freedesktop.org
+- Enfoque tipo Vi
+- Navegación entre etiquetas
+- Cambia el tamaño de las ventanas en uso
 - Dynamic tagging
 
 Capturas de pantalla
