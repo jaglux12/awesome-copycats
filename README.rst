@@ -133,11 +133,36 @@ Ahora solo necesitas seguir los siguientes pasos:
     $ cd ~/.config/awesome
     $ cp rc.lua.template rc.lua
 
-Ahora simplemente debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua``
-con tu tema preferido, puedes realizar tu configuración personal, y luego para aplicar
-los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).
+Para terminar, debemos modificar la variable ``chosen_theme`` de nuestro ``rc.lua``
+con tu tema preferido.
 
-Comúnmente la tecla ``Mod4`` es la tecla que se encuentra entre Ctrl y Alt en la  parte inferior izquierda del teclado.
+La variable ``chosen_theme`` se encuentra debajo de la lista de temas que tenemos para elegír.
+	
+.. code-block:: lua
+	
+	-- {{{ Variable definitions
+
+	local themes = {
+    	"blackburn",       -- 1
+    	"copland",         -- 2
+    	"dremora",         -- 3
+    	"holo",            -- 4
+    	"multicolor",      -- 5
+    	"powerarrow",      -- 6
+    	"powerarrow-dark", -- 7
+    	"rainbow",         -- 8
+    	"steamburn",       -- 9
+    	"vertex"           -- 10
+	}
+
+	local chosen_theme = themes[7]
+
+Por ejemplo: si queremos elegir el tema ``vertex`` , sólo debemos modificar el 
+número que se encuentra dentro de los corchetes. En este caso, es el número 10.
+
+En cualquier caso, puedes realizar tu configuración personal, y luego para aplicar
+los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).Comúnmente la tecla ``Mod4``
+ es la que se encuentra entre Ctrl y Alt en la  parte inferior izquierda del teclado.
 
 Para modificar un tema debes hacerlo en este archivo  ``themes/$tema/theme.lua``. 
 Generalmente se encuentra en ``/home/nuestrousuario/.config/awesome/themes/$tema/theme.lua`` .
