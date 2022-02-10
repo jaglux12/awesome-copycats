@@ -91,7 +91,7 @@ Capturas de pantalla
 .. image:: http://dotshare.it/public/images/uploads/651.jpg
 
 **Copland**, inspirado en foozer_
-p
+
 .. image:: http://dotshare.it/public/images/uploads/655.png
 
 **Vertex**, pedido por swordfischer_
