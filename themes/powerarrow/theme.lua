@@ -26,7 +26,7 @@ theme.bg_focus                                  = "#1E2320"
 theme.bg_urgent                                 = "#3F3F3F"
 theme.taglist_fg_focus                          = "#00CCFF"
 theme.tasklist_bg_focus                         = "#222222"
-theme.tasklist_fg_focus                         = "#00CCFF"
+theme.tasklist_fg_focus                         = "#FFFFFF"
 theme.border_width                              = dpi(2)
 theme.border_normal                             = "#3F3F3F"
 theme.border_focus                              = "#6F6F6F"
@@ -146,7 +146,7 @@ local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#000000", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
     end
 })
 
@@ -211,38 +211,61 @@ function theme.at_screen_connect(s)
                            awful.button({}, 3, function () awful.layout.inc(-1) end),
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
+
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
-    -- Create the wibox
-	s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(16), bg = theme.bg_normal, fg = theme.fg_normal })
+    -- Creamos las barras de herramientas
+    -- Barra superior (muestra la hora, cpu en uso, net, etc)
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(16), bg = theme.bg_normal, fg = theme.fg_normal })
+    -- Barra inferior (muestra el nombre del programa en uso y el layout manager)
+    s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, height = dpi(18), bg = theme.bg_normal, fg = "white" })
 
-    -- Add widgets to the wibox
+    -- Add widgets to the wibox / Agregamos los widgets de la barra superior
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        {
+            -- Left widgets / Items de la izquierda (lista de "pantallas", y prompt para ejecutar programas)
             layout = wibox.layout.fixed.horizontal,
-            --spr,
-            --s.mypromtbox,
-			s.mytaglist,
-			s.mypromptbox,
-			--spr,
+	    s.mytaglist,
+	    s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+	nil,
+        {
+	    -- Right widgets / Items de la derecha (memoria ram,cpu,temperatura,net,hora)
             layout = wibox.layout.fixed.horizontal,
-            pl(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, "#777E76"),
-            pl(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, "#4B696D"),
-            pl(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, "#4B3B51"),
-            pl(wibox.widget { neticon, net.widget, layout = wibox.layout.align.horizontal }, "#C0C0A2"),
-            pl(wibox.widget { brighticon, mytextclock,layout = wibox.layout.align.horizontal }, "#777E76"),
-		--	pl(mytextclock, "#777E76"),
+            arrow(theme.bg_normal, "#40b9d1"),
+            wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#40b9d1"),
+            arrow("#40b9d1", "#4d40d1"),
+            wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(4)), "#4d40d1"),
+	    arrow("#4d40d1", "#7940d1"),
+	    wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#7940d1"),
+            arrow("#7940d1", "#9c40d1"),
+            wibox.container.background(wibox.container.margin(wibox.widget { neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#9c40d1"),
+	    arrow("#9c40d1", "#000000"),
+	    wibox.container.background(wibox.container.margin(wibox.widget { brighticon, mytextclock, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#000000"),
+        },
+    }
+
+   	-- Agregamos los widgets a la barra inferior
+	s.mywiboxbottom:setup {
+        layout = wibox.layout.align.horizontal,
+        {
+	    -- Items de la izquierda
+            layout = wibox.layout.fixed.horizontal,
+        },
+        -- Items del medio (lista de programas, generalmente muestra el nombre del programa activo)
+        s.mytasklist,
+        {
+	     -- Item de la derecha (layout manager)
+            layout = wibox.layout.fixed.horizontal,
             s.mylayoutbox,
         },
     }
+
 end
 
 return theme
