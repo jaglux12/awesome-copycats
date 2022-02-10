@@ -60,7 +60,7 @@ Capturas de pantalla
 
 **Powercolors**, portado desde romockee_'s
 
-.. image:: https://github.com/jaglux12/awesome-copycats/blob/master/themes/powercolors/screenshots/powercolors-1.png
+.. image:: https://github.com/jaglux12/awesome-copycats/blob/master/themes/powercolors/screenshots/powercolors-0.png
 
 **Powerarrow Dark**
 
