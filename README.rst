@@ -49,7 +49,7 @@ Características
 - Enfoque tipo Vi
 - Navegación entre etiquetas
 - Cambia el tamaño de las ventanas en uso
-- Dynamic tagging
+- Etiquetado dinámico
 
 Capturas de pantalla
 =======
