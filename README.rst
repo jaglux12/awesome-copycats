@@ -4,7 +4,7 @@ Awesome WM Copycats (editado por Jaglux12)
 -------------------------
 Temas para Awesome WM 4.x
 -------------------------
-
+:Editor: Jaglux12
 :Creador: Luca CPZ
 :Versión: git
 :Licencia: BY-NC-SA_
@@ -20,9 +20,11 @@ Mira las  branches_ para versiones anteriores.
 Propósito
 =======
 
-The main purpose of this repository is to spread ready to use configurations, which can also serve as a cookbook for customisation.
+El propósito principal de este repositorio es compartir temas listos para utilizar
+, y que pueda servir como un pequeño libro de configuraciones.
 
-A secondary aim is to add new themes only when they constitute different UI/UX designs.
+El objetivo secundario es compartir nuevos temas, únicamente cuando consituyan
+diferentes diseños en la interfaz de usuario.
 
 Features
 ========
