@@ -1,7 +1,12 @@
 --[[
 
-     Powerarrow Awesome WM theme
-     github.com/lcpz
+     Tema original:
+     	Powerarrow Awesome WM theme
+     	github.com/lcpz
+
+     Powercolors:
+	Powercolors Awesome WM tema
+	github.com/jaglux12
 
 --]]
 
@@ -15,8 +20,8 @@ local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
-theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow"
-theme.wallpaper                                 = theme.dir .. "/wall.png"
+theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powercolors"
+theme.wallpaper                                 = theme.dir .. "/fondo_de_pantalla.png"
 theme.font                                      = "Terminus 10"
 theme.fg_normal                                 = "#FEFEFE"
 theme.fg_focus                                  = "#32D6FF"
@@ -39,20 +44,12 @@ theme.titlebar_fg_focus                         = theme.fg_focus
 theme.menu_height                               = dpi(30)
 theme.menu_width                                = dpi(160)
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
-theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
 theme.layout_tile                               = theme.dir .. "/icons/tile.png"
 theme.layout_tileleft                           = theme.dir .. "/icons/tileleft.png"
 theme.layout_tilebottom                         = theme.dir .. "/icons/tilebottom.png"
 theme.layout_tiletop                            = theme.dir .. "/icons/tiletop.png"
-theme.layout_fairv                              = theme.dir .. "/icons/fairv.png"
-theme.layout_fairh                              = theme.dir .. "/icons/fairh.png"
-theme.layout_spiral                             = theme.dir .. "/icons/spiral.png"
-theme.layout_dwindle                            = theme.dir .. "/icons/dwindle.png"
-theme.layout_max                                = theme.dir .. "/icons/max.png"
-theme.layout_fullscreen                         = theme.dir .. "/icons/fullscreen.png"
-theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
 theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
 theme.widget_battery                            = theme.dir .. "/icons/battery.png"
@@ -63,17 +60,6 @@ theme.widget_mem                                = theme.dir .. "/icons/mem.png"
 theme.widget_cpu                                = theme.dir .. "/icons/cpu.png"
 theme.widget_temp                               = theme.dir .. "/icons/temp.png"
 theme.widget_net                                = theme.dir .. "/icons/net.png"
-theme.widget_hdd                                = theme.dir .. "/icons/hdd.png"
-theme.widget_music                              = theme.dir .. "/icons/note.png"
-theme.widget_music_on                           = theme.dir .. "/icons/note_on.png"
-theme.widget_music_pause                        = theme.dir .. "/icons/pause.png"
-theme.widget_music_stop                         = theme.dir .. "/icons/stop.png"
-theme.widget_vol                                = theme.dir .. "/icons/vol.png"
-theme.widget_vol_low                            = theme.dir .. "/icons/vol_low.png"
-theme.widget_vol_no                             = theme.dir .. "/icons/vol_no.png"
-theme.widget_vol_mute                           = theme.dir .. "/icons/vol_mute.png"
-theme.widget_mail                               = theme.dir .. "/icons/mail.png"
-theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
 theme.widget_task                               = theme.dir .. "/icons/task.png"
 theme.widget_scissors                           = theme.dir .. "/icons/reloj.png"
 theme.tasklist_plain_task_name                  = true
@@ -102,13 +88,12 @@ local markup = lain.util.markup
 local separators = lain.util.separators
 local white = theme.fg_focus
 
--- Text Clock
+-- Reloj
 local mytextclock = wibox.widget.textclock(markup("#FFFFFF", " %H:%M "))
 mytextclock.font = "Terminus 9"
 
--- Calendario
+-- Calendario (se despliega cuando pasamos el puntero por encima de la hora)
 theme.cal = lain.widget.cal({
-    --cal = "cal --color=always",
     attach_to = { mytextclock },
     notification_preset = {
         font = "Terminus 9",
@@ -117,7 +102,7 @@ theme.cal = lain.widget.cal({
     }
 })
 
--- MEM
+-- Memoria RAM utilizada
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
     settings = function()
@@ -125,7 +110,7 @@ local mem = lain.widget.mem({
     end
 })
 
--- CPU
+-- Muestra el uso de la CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
@@ -133,7 +118,7 @@ local cpu = lain.widget.cpu({
     end
 })
 
--- Coretemp (lain, average)
+-- Muestra la temperatura de los núcleos - Coretemp (lain, average)
 local temp = lain.widget.temp({
     settings = function()
         widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
@@ -142,7 +127,7 @@ local temp = lain.widget.temp({
 
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 
--- Net
+-- Muestra el uso de internet
 local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
     settings = function()
@@ -152,13 +137,6 @@ local net = lain.widget.net({
 
 -- Brigtness
 local brighticon = wibox.widget.imagebox(theme.widget_brightness)
--- If you use xbacklight, comment the line with "light -G" and uncomment the line bellow
--- local brightwidget = awful.widget.watch('xbacklight -get', 0.1,
-local brightwidget = awful.widget.watch('light -G', 0.1,
-    function(widget, stdout, stderr, exitreason, exitcode)
-        local brightness_level = tonumber(string.format("%.0f", stdout))
-        widget:set_markup(markup.font(theme.font, " " .. brightness_level .. "%"))
-end)
 
 -- Separators
 local arrow = separators.arrow_left
@@ -202,6 +180,7 @@ function theme.at_screen_connect(s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
+
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
