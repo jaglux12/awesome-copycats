@@ -165,7 +165,7 @@ As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be 
 
 Every theme has a colorscheme_.
 
-Additional default software used: ::
+Para utilizar los temas debemos tener instalado los siguientes programas: ::
 
     amixer dmenu librewolf mpc mpd scrot unclutter xbacklight xsel slock
 
