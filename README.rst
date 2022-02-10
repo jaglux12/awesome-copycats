@@ -66,7 +66,7 @@ Capturas de pantalla
 
 .. image:: http://dotshare.it/public/images/uploads/649.jpg
 
-**Powerarrow Colors**
+**Powerainbow**
 
 
 
@@ -91,7 +91,7 @@ Capturas de pantalla
 .. image:: http://dotshare.it/public/images/uploads/651.jpg
 
 **Copland**, inspirado en foozer_
-
+p
 .. image:: http://dotshare.it/public/images/uploads/655.png
 
 **Vertex**, pedido por swordfischer_
@@ -187,7 +187,7 @@ Notes
 
 Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies_. In particular, mail_ and weather_ widgets have **mandatory** arguments.
 
-Las fuentes utilizadas en las capturas de pantall son: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark,Powerarrow Colors), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
+Las fuentes utilizadas en las capturas de pantall son: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark,Powerainbow), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
 
 As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
 
