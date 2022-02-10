@@ -161,22 +161,25 @@ Por ejemplo: si queremos elegir el tema ``vertex`` , sólo debemos modificar el
 número que se encuentra dentro de los corchetes. En este caso, es el número 10.
 
 En cualquier caso, puedes realizar tu configuración personal, y luego para aplicar
-los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``).Comúnmente la tecla ``Mod4``
+los cambios debes reiniciar tu Awesome (``Mod4 + ctrl + r``). 
+ 
+ Comúnmente la tecla ``Mod4``
  es la que se encuentra entre Ctrl y Alt en la  parte inferior izquierda del teclado.
 
 Para modificar un tema debes hacerlo en este archivo  ``themes/$tema/theme.lua``. 
 Generalmente se encuentra en ``/home/nuestrousuario/.config/awesome/themes/$tema/theme.lua`` .
 
-Otherwise, if you want to be synced with upstream, modify the theme path in ``rc.lua`` like this:
+Si ya eres un usuario avanzado y utilizas un tema personalizado, debes modificar el 
+archivo ``rc.lua`` , en la siguiente línea:
 
 .. code-block:: diff
 
     -beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
     +beautiful.init(string.format("%s/.config/awesome/themes/%s/theme-personal.lua", os.getenv("HOME"), chosen_theme))
 
-then, copy ``theme.lua`` to ``theme-personal.lua`` and do your customizations there.
+Donde,  ``theme-personal.lua`` representa tu archivo de modificaciones.
 
-This way, you can safely ``git pull`` anytime.
+De esta manera, puedes hacer ``git pull`` en cualquier momento.
 
 Notes
 =====
