@@ -102,6 +102,28 @@ theme.cal = lain.widget.cal({
     }
 })
 
+-- Batería
+local baticon = wibox.widget.imagebox(theme.widget_battery)
+local bat = lain.widget.bat({
+    settings = function()
+        if bat_now.status and bat_now.status ~= "N/A" then
+            if bat_now.ac_status == 1 then
+                baticon:set_image(theme.widget_ac)
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
+                baticon:set_image(theme.widget_battery_empty)
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
+                baticon:set_image(theme.widget_battery_low)
+            else
+                baticon:set_image(theme.widget_battery)
+            end
+            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+        else
+            widget:set_markup(markup.font(theme.font, " AC "))
+            baticon:set_image(theme.widget_ac)
+        end
+    end
+})
+
 -- Memoria RAM utilizada
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
@@ -216,6 +238,8 @@ function theme.at_screen_connect(s)
         {
 	    -- Right widgets / Items de la derecha (memoria ram,cpu,temperatura,net,hora)
             layout = wibox.layout.fixed.horizontal,
+	    baticon,
+	    bat.widget,
             arrow(theme.bg_normal, "#40b9d1"),
             wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#40b9d1"),
             arrow("#40b9d1", "#4d40d1"),
