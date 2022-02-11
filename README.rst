@@ -58,7 +58,7 @@ Capturas de pantalla
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powercolors**, portado desde romockee_'s
+**Powercolors**, portado desde romockee_'s (originamente llamado Powerarrow)
 
 .. image:: https://github.com/jaglux12/awesome-copycats/blob/master/themes/powercolors/screenshots/powercolors-0.png
 
