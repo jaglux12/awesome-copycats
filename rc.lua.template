@@ -247,24 +247,33 @@ root.buttons(mytable.join(
 
 -- }}}
 
--- {{{ Atajos de teclado
-
+--
+-- Atajos de teclado
+--
 globalkeys = mytable.join(
 
+    --
     -- Borrar notificaciones
+    --
     --awful.key({ "Control",           }, "space", function() naughty.destroy_all_notifications() end,
       --        {description = "destroy all notifications", group = "hotkeys"}),
 
+    --
     -- Tomar capura de pantalla
+    --
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
     --awful.key({ altkey }, "p", function() os.execute("screenshot") end,
               --{description = "take a screenshot", group = "hotkeys"}),
 
+    --
     -- Bloquear pantalla
+    --
     --awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
               --{description = "lock screen", group = "hotkeys"}),
 
+    --
     -- Mostrar lista de atajos
+    --
     awful.key({ modkeyred }, "z",      hotkeys_popup.show_help,
               {description="Mostrar ayuda", group="awesome"}),
 
@@ -272,23 +281,28 @@ globalkeys = mytable.join(
     -- Navegar a través de las pantallas
     --
 
-    awful.key({ modkeyred }, "a",   awful.tag.viewprev, -- Moverse a la izquierda
+    -- Moverse a la izquierda
+    awful.key({ modkeyred }, "a",   awful.tag.viewprev,
               {description = "Moverse hacia la izquierda", group = "tag"}),
 
-    awful.key({ modkeyred }, "s",  awful.tag.viewnext, -- Moverse a la derecha
+    -- Moverse a la derecha
+    awful.key({ modkeyred }, "s",  awful.tag.viewnext,
               {description = "Moverse hacia la derecha", group = "tag"}),
 
-    awful.key({ modkeyred }, "d", awful.tag.history.restore, -- Alternar entre las 2 últimas pantallas
+    -- Alternar entre las 2 últimas pantallas
+    awful.key({ modkeyred }, "d", awful.tag.history.restore,
               {description = "Alternar entre las 2 últimas pantallas", group = "tag"}),
 
     --
     -- Moverse a través de pantallas NO vacías
     --
 
-    awful.key({ modkeyred, altkey }, "a", function () lain.util.tag_view_nonempty(-1) end, -- Moverse a la izquierda
+    -- Moverse a la izquierda
+    awful.key({ modkeyred, altkey }, "a", function () lain.util.tag_view_nonempty(-1) end,
               {description = "Moverse a la siguiente ventana NO vacía", group = "tag"}),
 
-    awful.key({ modkeyred, altkey }, "s", function () lain.util.tag_view_nonempty(1) end, -- Moverse a la derecha
+    -- Moverse a la derecha
+    awful.key({ modkeyred, altkey }, "s", function () lain.util.tag_view_nonempty(1) end,
               {description = "Moverse a la anteior ventana NO vacía", group = "tag"}),
 
     --
@@ -351,10 +365,13 @@ globalkeys = mytable.join(
     -- Menú principal
     --
 
-    awful.key({ modkey }, "w", function () awful.util.mymainmenu:show() end, -- Mostrar menú principal
+    -- Mostrar menú principal
+    awful.key({ modkey }, "w", function () awful.util.mymainmenu:show() end,
               {description = "Mostrar menú principal", group = "awesome"}),
 
+    --
     -- Layout manipulation
+    -- 
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
