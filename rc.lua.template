@@ -104,6 +104,7 @@ local chosen_theme = themes[6]
 local modkey       = "Mod4"
 local modkeyred    = "Mod5"
 local altkey       = "Mod1"
+local modkeygreen  = "Mod1"
 
 -- Programas personales
 local editor       = os.getenv("EDITOR") or "geany"
@@ -183,9 +184,11 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 
 -- }}}
 
--- {{{ Menu
+--
+--  Menu Principal
+--
 
--- Create a launcher widget and a main menu
+-- Creamos el launcher de Awesome
 local myawesomemenu = {
    { "Atajos", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "Manual", string.format("%s -e man awesome", terminal) },
@@ -366,23 +369,15 @@ globalkeys = mytable.join(
     --
 
     -- Mostrar menú principal
-    awful.key({ modkey }, "w", function () awful.util.mymainmenu:show() end,
+    awful.key({ modkeyred }, "w", function () awful.util.mymainmenu:show() end,
               {description = "Mostrar menú principal", group = "awesome"}),
 
     --
     -- Layout manipulation
-    -- 
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
-              {description = "swap with next client by index", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
-              {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
-              {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
+    --
+
+    -- Alternar entre las últimas 2 ventanas utilizadas
+    awful.key({ modkeyred,           }, "Tab",
         function ()
             if cycle_prev then
                 awful.client.focus.history.previous()
@@ -395,42 +390,60 @@ globalkeys = mytable.join(
         end,
         {description = "cycle with previous/go back", group = "client"}),
 
-    -- Show/hide wibox
-    awful.key({ modkey }, "b", function ()
-            for s in screen do
-                s.mywibox.visible = not s.mywibox.visible
-                if s.mybottomwibox then
-                    s.mybottomwibox.visible = not s.mybottomwibox.visible
-                end
-            end
-        end,
-        {description = "toggle wibox", group = "awesome"}),
+    -- Mostrar/esconder la barra superior
+    --awful.key({ modkey }, "b", function ()
+            --for s in screen do
+              --  s.mywibox.visible = not s.mywibox.visible
+                --if s.mybottomwibox then
+                    --s.mybottomwibox.visible = not s.mybottomwibox.visible
+                --end
+            --end
+      --  end,
+      --  {description = "toggle wibox", group = "awesome"}),
 
-    -- On-the-fly useless gaps change
-    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end,
-              {description = "increment useless gaps", group = "tag"}),
-    awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end,
-              {description = "decrement useless gaps", group = "tag"}),
+    --
+    -- Cambio de espacios en blanco
+    --
 
-    -- Dynamic tagging
-    awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag() end,
-              {description = "add new tag", group = "tag"}),
+    --awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end,
+              --{description = "Incrementar el tamaño de los espacios en blanco", group = "tag"}),
+
+    --awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end,
+              --{description = "Decrementar el tamaño de los espacios en blanco", group = "tag"}),
+
+    --
+    -- Etiquetado dinámico (podemos cambiar el contenido de las pantallas y moverlos a nuestro antojo)
+    --
+
+    -- Agrega una nueva pantalla
+    awful.key({ modkeygreen }, "n", function () lain.util.add_tag() end,
+              {description = "Agrega una nueva pantalla", group = "tag"}),
+
+    -- Cambiarle el nombre a la pantalla actual
     awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag() end,
-              {description = "rename tag", group = "tag"}),
-    awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(-1) end,
-              {description = "move tag to the left", group = "tag"}),
-    awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(1) end,
-              {description = "move tag to the right", group = "tag"}),
-    awful.key({ modkey, "Shift" }, "d", function () lain.util.delete_tag() end,
-              {description = "delete tag", group = "tag"}),
+              {description = "Renombrar pantalla actual", group = "tag"}),
 
-    -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(-1) end,
+              {description = "Mover la pantalla hacia la izquierda", group = "tag"}),
+
+    awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(1) end,
+              {description = "Mover la pantalla hacia la derecha", group = "tag"}),
+
+    awful.key({ modkey, "Shift" }, "d", function () lain.util.delete_tag() end,
+              {description = "Borrar pantalla actual", group = "tag"}),
+
+    --
+    -- Programas por default
+    --
+
+    awful.key({ modkeyred }, "t", function () awful.spawn(terminal) end,
+              {description = "Nueva terminal", group = "launcher"}),
+
     awful.key({ modkey, "Control" }, "r", awesome.restart,
-              {description = "reload awesome", group = "awesome"}),
+              {description = "Reiniciar awesome", group = "awesome"}),
+
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+              {description = "Salir de Awesome", group = "awesome"}),
 
     awful.key({ modkey, altkey    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
