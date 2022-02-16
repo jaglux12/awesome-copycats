@@ -415,34 +415,28 @@ globalkeys = mytable.join(
     -- Etiquetado dinámico (podemos cambiar el contenido de las pantallas y moverlos a nuestro antojo)
     --
 
-    -- Agrega una nueva pantalla
-    awful.key({ modkeygreen }, "n", function () lain.util.add_tag() end,
-              {description = "Agrega una nueva pantalla", group = "tag"}),
-
-    -- Cambiarle el nombre a la pantalla actual
-    awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag() end,
-              {description = "Renombrar pantalla actual", group = "tag"}),
-
-    awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(-1) end,
+    -- Mover el contenido de la pantalla actual hacia la izquierda
+    awful.key({ modkey}, "Left", function () lain.util.move_tag(-1) end,
               {description = "Mover la pantalla hacia la izquierda", group = "tag"}),
 
+    -- Mover el contenido de la pantalla actual hacia la derecha
     awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(1) end,
               {description = "Mover la pantalla hacia la derecha", group = "tag"}),
-
-    awful.key({ modkey, "Shift" }, "d", function () lain.util.delete_tag() end,
-              {description = "Borrar pantalla actual", group = "tag"}),
 
     --
     -- Programas por default
     --
 
+    -- Abrimos una nueva terminal
     awful.key({ modkeyred }, "t", function () awful.spawn(terminal) end,
               {description = "Nueva terminal", group = "launcher"}),
 
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    -- Reiniciamos Awesome
+    awful.key({ modkeyred }, "r", awesome.restart,
               {description = "Reiniciar awesome", group = "awesome"}),
 
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    -- Salir de Awesome
+    awful.key({ modkeyred }, "x", awesome.quit,
               {description = "Salir de Awesome", group = "awesome"}),
 
     awful.key({ modkey, altkey    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
@@ -566,46 +560,20 @@ globalkeys = mytable.join(
     awful.key({ modkey }, "v", function () awful.spawn.with_shell("xsel -b | xsel") end,
               {description = "copy gtk to terminal", group = "hotkeys"}),
 
-    -- User programs
-    awful.key({ modkey }, "q", function () awful.spawn(browser) end,
-              {description = "run browser", group = "launcher"}),
+    --
+    -- Programas del usuario
+    --
 
-    -- Default
-    --[[ Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
-    --]]
-    --[[ dmenu
-    awful.key({ modkey }, "x", function ()
-            os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
-            beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-        end,
-        {description = "show dmenu", group = "launcher"}),
-    --]]
-    -- alternatively use rofi, a dmenu-like application with more features
-    -- check https://github.com/DaveDavenport/rofi for more details
-    --[[ rofi
-    awful.key({ modkey }, "x", function ()
+    -- Ejecutamos el navegador
+    awful.key({ modkeyred }, "b", function () awful.spawn(browser) end,
+              {description = "Ejecutar navegador", group = "launcher"}),
+
+    -- Rofi sirve para ejecutar programas
+    awful.key({ modkeyred }, "e", function ()
             os.execute(string.format("rofi -show %s -theme %s",
             'run', 'dmenu'))
-        end,
-        {description = "show rofi", group = "launcher"}),
-    --]]
-    -- Prompt
-    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"})
-    --]]
+            end,
+            {description = "Mostrar rofi para ejecutar programas", group = "launcher"})
 )
 
 clientkeys = mytable.join(
