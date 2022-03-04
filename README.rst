@@ -54,45 +54,10 @@ Características
 Capturas de pantalla
 =======
 
-**Multicolor**, inspirado en  lucamanni_
-
-.. image:: http://dotshare.it/public/images/uploads/650.png
-
 **Powercolors**, portado desde romockee_'s (originamente llamado Powerarrow)
 
 .. image:: https://github.com/jaglux12/awesome-copycats/blob/master/themes/powercolors/screenshots/powercolors-0.png
 
-**Powerarrow Dark**
-
-.. image:: http://dotshare.it/public/images/uploads/649.jpg
-
-**Steamburn**, portado desde ok100_'s dwm
-
-.. image:: http://dotshare.it/public/images/uploads/648.png
-
-**Blackburn**
-
-.. image:: http://dotshare.it/public/images/uploads/553.png
-
-**Dremora**
-
-.. image:: http://dotshare.it/public/images/uploads/652.png
-
-**Rainbow**
-
-.. image:: http://dotshare.it/public/images/uploads/606.png
-
-**Holo**, pedido por amouly_
-
-.. image:: http://dotshare.it/public/images/uploads/651.jpg
-
-**Copland**, inspirado en foozer_
-
-.. image:: http://dotshare.it/public/images/uploads/655.png
-
-**Vertex**, pedido por swordfischer_
-
-.. image:: http://dotshare.it/public/images/uploads/1432.jpg
 
 Instalación
 ============
