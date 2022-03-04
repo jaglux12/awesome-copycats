@@ -160,7 +160,7 @@ Every theme has a colorscheme_.
 
 Para utilizar los temas debemos tener instalado los siguientes programas: ::
 
-    amixer dmenu librewolf mpc mpd scrot unclutter xbacklight xsel slock
+    amixer dmenu firefox mpc mpd scrot unclutter xbacklight xsel slock rofi
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
 .. _Awesome: http://github.com/awesomeWM/awesome
