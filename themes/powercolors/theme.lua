@@ -5,7 +5,7 @@
      	github.com/lcpz
 
      Powercolors:
-	Powercolors Awesome WM tema
+	Powercolors Awesome WM
 	github.com/jaglux12
 
 --]]
@@ -21,7 +21,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powercolors"
-theme.wallpaper                                 = theme.dir .. "/fondo_de_pantalla.png"
+theme.wallpaper                                 = theme.dir .. "/wallpapers/fondo_de_pantalla.png"
 theme.font                                      = "Terminus 10"
 theme.fg_normal                                 = "#FEFEFE"
 theme.fg_focus                                  = "#32D6FF"
