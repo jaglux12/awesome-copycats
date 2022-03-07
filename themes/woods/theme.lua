@@ -42,7 +42,7 @@ theme.menu_width                                = dpi(140)
 theme.awesome_icon                              = theme.icon_dir .. "/pino.png"
 theme.taglist_squares_sel                       = gears.surface.load_from_shape(dpi(1), dpi(30), gears.shape.rectangle, theme.fg_focus)
 theme.taglist_squares_unsel                     = gears.surface.load_from_shape(dpi(1), dpi(30), gears.shape.rectangle, theme.bg_focus2)
-theme.panelbg                                   = theme.icon_dir .. "/panel.png"
+theme.panelbg                                   = theme.icon_dir .. "/"
 theme.bat000charging                            = theme.icon_dir .. "/bat-000-charging.png"
 theme.bat000                                    = theme.icon_dir .. "/bat-000.png"
 theme.bat020charging                            = theme.icon_dir .. "/bat-020-charging.png"
@@ -130,7 +130,7 @@ theme.cal = lain.widget.cal({
 })
 
 -- Batería
-local baticon = wibox.widget.imagebox(theme.widget_battery)
+local baticon = wibox.widget.imagebox(theme.bat000charging)
 local bat = lain.widget.bat({
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
@@ -419,7 +419,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, awful.util.tasklist_buttons, { fg_focus = "#ffffff" })
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = gears.color.create_png_pattern(theme.panelbg) })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = "#000000"  })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
