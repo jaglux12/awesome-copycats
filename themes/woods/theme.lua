@@ -130,24 +130,42 @@ theme.cal = lain.widget.cal({
 })
 
 -- Batería
-local baticon = wibox.widget.imagebox(theme.bat000charging)
+local baticon = wibox.widget.imagebox(theme.bat000)
+local battooltip = awful.tooltip({
+    objects = { baticon },
+    margin_leftright = dpi(15),
+    margin_topbottom = dpi(12)
+})
+battooltip.wibox.fg = theme.fg_normal
+battooltip.textbox.font = theme.font
+battooltip.timeout = 0
+battooltip:set_shape(function(cr, width, height)
+    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - dpi(35))
+end)
 local bat = lain.widget.bat({
     settings = function()
-        if bat_now.status and bat_now.status ~= "N/A" then
-            if bat_now.ac_status == 1 then
-                baticon:set_image(theme.widget_ac)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-                baticon:set_image(theme.widget_battery_empty)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-                baticon:set_image(theme.widget_battery_low)
-            else
-                baticon:set_image(theme.widget_battery)
-            end
-            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
-        else
-            widget:set_markup(markup.font(theme.font, " AC "))
-            baticon:set_image(theme.widget_ac)
+        local index, perc = "bat", tonumber(bat_now.perc) or 0
+
+        if perc <= 7 then
+            index = index .. "000"
+        elseif perc <= 20 then
+            index = index .. "020"
+        elseif perc <= 40 then
+            index = index .. "040"
+        elseif perc <= 60 then
+            index = index .. "060"
+        elseif perc <= 80 then
+            index = index .. "080"
+        elseif perc <= 100 then
+            index = index .. "100"
         end
+
+        if bat_now.ac_status == 1 then
+            index = index .. "charging"
+        end
+
+        baticon:set_image(theme[index])
+        battooltip:set_markup(string.format("\n%s%%, %s", perc, bat_now.time))
     end
 })
 
@@ -444,7 +462,6 @@ function theme.at_screen_connect(s)
             --theme.weather.widget,
             rspace1,
             baticon,
-            bat.widget,
             rspace2,
             volicon,
             rspace3,
