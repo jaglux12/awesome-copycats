@@ -5,8 +5,8 @@
      	github.com/lcpz
 
      Modificado:
-	Woods Awesome WM
-	github.com/jaglux12
+		Woods Awesome WM
+		github.com/jaglux12
 
 --]]
 
