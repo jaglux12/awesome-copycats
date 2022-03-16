@@ -1,11 +1,11 @@
 --[[
 
-     Awesome WM configuration template
-     github.com/lcpz
+     Configuración de Awesome WM 
+     github.com/jaglux12
 
 --]]
 
--- {{{ Required libraries
+-- Librerías requeridas
 
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
@@ -468,7 +468,7 @@ globalkeys = mytable.join(
     awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
               {description = "show weather", group = "widgets"}),
 
-    -- Screen brightness
+    -- Brillo de la pantalla
     awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end,
               {description = "+10%", group = "hotkeys"}),
     awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end,
