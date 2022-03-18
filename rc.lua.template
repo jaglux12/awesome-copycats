@@ -102,6 +102,7 @@ local modkeygreen  = "Mod1"
 local editor       = os.getenv("EDITOR") or "geany"
 local browser      = "firefox"
 local terminal     = "xfce4-terminal"
+local fileexplorer = "thunar"
 
 -- Más configuraciones
 local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
@@ -461,7 +462,7 @@ globalkeys = mytable.join(
               {description = "dropdown application", group = "launcher"}),
 
     -- Widgets popups
-    awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(7) end end,
+    awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(5) end end,
               {description = "show calendar", group = "widgets"}),
     awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
               {description = "show filesystem", group = "widgets"}),
@@ -559,7 +560,11 @@ globalkeys = mytable.join(
     -- Ejecutamos el navegador
     awful.key({ modkeyred }, "b", function () awful.spawn(browser) end,
               {description = "Ejecutar navegador", group = "launcher"}),
-
+	
+	-- Ejecutamos nuestro navegador de archivos (De preferencia Thunar)
+       awful.key({ modkeyred }, "f", function () awful.spawn(fileexplorer) end,
+            {description = "Ejecutar navegador de archivos", group = "launcher"}),
+	
     -- Rofi sirve para ejecutar programas
     awful.key({ modkeyred }, "e", function ()
             os.execute(string.format("rofi -show %s -theme %s",
