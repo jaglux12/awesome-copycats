@@ -173,9 +173,11 @@ awful.util.tasklist_buttons = mytable.join(
      awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)
 )
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+--
+-- Directorio de los temas
+--
 
--- }}}
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
 
 --
 --  Menu Principal
@@ -192,11 +194,11 @@ local myawesomemenu = {
 
 awful.util.mymainmenu = freedesktop.menu.build {
     before = {
-        { "Awesome", myawesomemenu, beautiful.awesome_icon },
+        -- { "Awesome", myawesomemenu},
         -- other triads can be put here
     },
     after = {
-        { "Nueva terminal", terminal },
+        --{ "Nueva terminal", terminal },
         -- other triads can be put here
     }
 }
@@ -237,8 +239,8 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 
 root.buttons(mytable.join(
     awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 4, awful.tag.viewprev),
+    awful.button({ }, 5, awful.tag.viewnext)
 ))
 
 -- }}}
