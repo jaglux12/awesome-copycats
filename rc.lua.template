@@ -92,11 +92,12 @@ local themes = {
 -- Tema
 local chosen_theme = themes[2]
 
--- Atajos
+-- Código de teclas
 local modkey       = "Mod4"
 local modkeyred    = "Mod5"
 local altkey       = "Mod1"
 local modkeygreen  = "Mod1"
+local control = "control"
 
 -- Programas personales
 local editor       = os.getenv("EDITOR") or "geany"
@@ -238,9 +239,9 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 -- {{{ Mouse bindings
 
 root.buttons(mytable.join(
-    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewprev),
-    awful.button({ }, 5, awful.tag.viewnext)
+    awful.button({}, 3, function () awful.util.mymainmenu:toggle() end),
+    awful.button({}, 4, awful.tag.viewprev),
+    awful.button({}, 5, awful.tag.viewnext)
 ))
 
 -- }}}
@@ -248,6 +249,7 @@ root.buttons(mytable.join(
 --
 -- Atajos de teclado
 --
+
 globalkeys = mytable.join(
 
     --
@@ -272,7 +274,7 @@ globalkeys = mytable.join(
     --
     -- Mostrar lista de atajos
     --
-    awful.key({ modkeyred }, "z",      hotkeys_popup.show_help,
+    awful.key({ modkeyred }, "z",hotkeys_popup.show_help,
               {description="Mostrar ayuda", group="awesome"}),
 
     --
@@ -296,27 +298,27 @@ globalkeys = mytable.join(
     --
 
     -- Moverse a la izquierda
-    awful.key({ modkeyred, altkey }, "a", function () lain.util.tag_view_nonempty(-1) end,
+    awful.key({ modkeyred, altkey }, "a", function () lain.util.tag_view_nonempty(1) end,
               {description = "Moverse a la siguiente ventana NO vacía", group = "tag"}),
 
     -- Moverse a la derecha
-    awful.key({ modkeyred, altkey }, "s", function () lain.util.tag_view_nonempty(1) end,
-              {description = "Moverse a la anteior ventana NO vacía", group = "tag"}),
+    awful.key({ modkeyred, altkey }, "s", function () lain.util.tag_view_nonempty(-1) end,
+              {description = "Moverse a la anterior ventana NO vacía", group = "tag"}),
 
     --
     -- Moverse entre ventanas de programas (siguiente y anterior)
     --
 
     -- Moverse a la ventana siguiente
-    awful.key({ altkey }, "j",
+    awful.key({ modkeygreen }, "k",
         function ()
-            awful.client.focus.byidx( 1)
+            awful.client.focus.byidx(1)
         end,
         {description = "Enfocar la ventana siguiente", group = "client"}
     ),
 
     -- Moverse a la ventana anterior
-    awful.key({ altkey }, "k",
+    awful.key({ modkeygreen }, "j",
         function ()
             awful.client.focus.byidx(-1)
         end,
@@ -328,36 +330,36 @@ globalkeys = mytable.join(
     --
 
     -- Moverse hacia abajo
-    awful.key({ altkey, modkeyred }, "m",
+    awful.key({ modkeygreen, modkeyred }, "m",
         function()
             awful.client.focus.global_bydirection("down")
             if client.focus then client.focus:raise() end
         end,
-        {description = "Moverse hacia abajo", group = "client"}),
+        {description = "Focus hacia abajo", group = "client"}),
 
     -- Moverse hacia arriba
-    awful.key({ altkey, modkeyred }, "i",
+    awful.key({ modkeygreen, modkeyred }, "i",
         function()
             awful.client.focus.global_bydirection("up")
             if client.focus then client.focus:raise() end
         end,
-        {description = "Moverse hacia arriba", group = "client"}),
+        {description = "Focus hacia arriba", group = "client"}),
 
     -- Moverse hacia la izquierda
-    awful.key({ altkey, modkeyred }, "j",
+    awful.key({ modkeygreen, modkeyred }, "j",
         function()
             awful.client.focus.global_bydirection("left")
             if client.focus then client.focus:raise() end
         end,
-        {description = "Moverse hacia la izquierda", group = "client"}),
+        {description = "Focus hacia la izquierda", group = "client"}),
 
     -- Moverse hacia la derecha
-    awful.key({ altkey, modkeyred }, "k",
+    awful.key({ modkeygreen, modkeyred }, "k",
         function()
             awful.client.focus.global_bydirection("right")
             if client.focus then client.focus:raise() end
         end,
-        {description = "Moverse hacia la derecha", group = "client"}),
+        {description = "Focus hacia la derecha", group = "client"}),
 
     --
     -- Menú principal
@@ -370,21 +372,7 @@ globalkeys = mytable.join(
     --
     -- Layout manipulation
     --
-
-    -- Alternar entre las últimas 2 ventanas utilizadas
-    awful.key({ modkeyred,           }, "Tab",
-        function ()
-            if cycle_prev then
-                awful.client.focus.history.previous()
-            else
-                awful.client.focus.byidx(-1)
-            end
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "cycle with previous/go back", group = "client"}),
-
+    
     -- Mostrar/esconder la barra superior
     --awful.key({ modkey }, "b", function ()
             --for s in screen do
@@ -411,12 +399,12 @@ globalkeys = mytable.join(
     --
 
     -- Mover el contenido de la pantalla actual hacia la izquierda
-    awful.key({ modkey}, "Left", function () lain.util.move_tag(-1) end,
-              {description = "Mover la pantalla hacia la izquierda", group = "tag"}),
+    -- awful.key({  }, "j", function () lain.util.move_tag(-1) end,
+              -- {description = "Mover la pantalla hacia la izquierda", group = "tag"}),
 
     -- Mover el contenido de la pantalla actual hacia la derecha
-    awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(1) end,
-              {description = "Mover la pantalla hacia la derecha", group = "tag"}),
+    -- awful.key({  }, "k", function () lain.util.move_tag(1) end,
+              -- {description = "Mover la pantalla hacia la derecha", group = "tag"}),
 
     --
     -- Programas por default
@@ -433,11 +421,15 @@ globalkeys = mytable.join(
     -- Salir de Awesome
     awful.key({ modkeyred }, "x", awesome.quit,
               {description = "Salir de Awesome", group = "awesome"}),
-
+	-- 
+	-- Manipulación de ventanas activas (cambiar el tamaño y elegir nuevos layouts)
+    -- 
     awful.key({ modkey, altkey    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
+              
     awful.key({ modkey, altkey    }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
+              
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
