@@ -298,11 +298,11 @@ globalkeys = mytable.join(
     --
 
     -- Moverse a la izquierda
-    awful.key({ modkeyred, altkey }, "a", function () lain.util.tag_view_nonempty(1) end,
+    awful.key({ modkeyred, modkeygreen }, "a", function () lain.util.tag_view_nonempty(1) end,
               {description = "Moverse a la siguiente ventana NO vacía", group = "tag"}),
 
     -- Moverse a la derecha
-    awful.key({ modkeyred, altkey }, "s", function () lain.util.tag_view_nonempty(-1) end,
+    awful.key({ modkeyred, modkeygreen }, "s", function () lain.util.tag_view_nonempty(-1) end,
               {description = "Moverse a la anterior ventana NO vacía", group = "tag"}),
 
     --
@@ -374,13 +374,13 @@ globalkeys = mytable.join(
     --
     
     -- Mostrar/esconder la barra superior
-    --awful.key({ modkey }, "b", function ()
-            --for s in screen do
+    -- awful.key({ modkey }, "b", function ()
+            -- for s in screen do
               --  s.mywibox.visible = not s.mywibox.visible
-                --if s.mybottomwibox then
-                    --s.mybottomwibox.visible = not s.mybottomwibox.visible
-                --end
-            --end
+                -- if s.mybottomwibox then
+                    -- s.mybottomwibox.visible = not s.mybottomwibox.visible
+                -- end
+            -- end
       --  end,
       --  {description = "toggle wibox", group = "awesome"}),
 
@@ -421,9 +421,12 @@ globalkeys = mytable.join(
     -- Salir de Awesome
     awful.key({ modkeyred }, "x", awesome.quit,
               {description = "Salir de Awesome", group = "awesome"}),
+              
 	-- 
 	-- Manipulación de ventanas activas (cambiar el tamaño y elegir nuevos layouts)
     -- 
+    
+    -- Incrementa el tamaño de la ventana principal (Master)
     awful.key({ modkey, altkey    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
               
