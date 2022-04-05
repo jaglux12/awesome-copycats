@@ -115,126 +115,42 @@ awful.util.tagnames = { "", "" ,"","", "", "", "", "", "
 
 local markup = lain.util.markup
 
--- Reloj
---os.setlocale(os.getenv("LANG")) -- to localize the clock
-local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "%a %d %b, %H:%M"))
-mytextclock.font = theme.font
-theme.cal = lain.widget.cal({
-    attach_to = { mytextclock },
-    notification_preset = {
-        fg = "#FFFFFF",
-        bg = theme.bg_normal,
-        position = "top_middle",
-        font = "Monospace 10"
-    }
+
+-- Reloj y calendario de la parte superior
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+mytextclock = wibox.widget.textclock()
+
+local cw = calendar_widget({
+    theme = 'dark',
+    placement = 'top_center',
+    start_sunday = true,
+    radius = 8,
+    previous_month_button = 1,
+    next_month_button = 3,
 })
-
--- Batería
-local baticon = wibox.widget.imagebox(theme.bat000)
-local battooltip = awful.tooltip({
-    objects = { baticon },
-    margin_leftright = dpi(15),
-    margin_topbottom = dpi(12)
-})
-battooltip.wibox.fg = theme.fg_normal
-battooltip.textbox.font = theme.font
-battooltip.timeout = 0
-battooltip:set_shape(function(cr, width, height)
-    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - dpi(35))
-end)
-local bat = lain.widget.bat({
-    settings = function()
-        local index, perc = "bat", tonumber(bat_now.perc) or 0
-
-        if perc <= 7 then
-            index = index .. "000"
-        elseif perc <= 20 then
-            index = index .. "020"
-        elseif perc <= 40 then
-            index = index .. "040"
-        elseif perc <= 60 then
-            index = index .. "060"
-        elseif perc <= 80 then
-            index = index .. "080"
-        elseif perc <= 100 then
-            index = index .. "100"
-        end
-
-        if bat_now.ac_status == 1 then
-            index = index .. "charging"
-        end
-
-        baticon:set_image(theme[index])
-        battooltip:set_markup(string.format("\n%s%%, %s", perc, bat_now.time))
-    end
-})
+mytextclock:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
 
 
--- MPD
-theme.mpd = lain.widget.mpd({
-    music_dir = "/mnt/storage/Downloads/Music",
-    settings = function()
-        if mpd_now.state == "play" then
-            title = mpd_now.title
-            artist  = "  " .. mpd_now.artist  .. " "
-        elseif mpd_now.state == "pause" then
-            title = "mpd "
-            artist  = "paused "
-        else
-            title  = ""
-            artist = ""
-        end
+-- Batería (en caso de no tener - desactivarla)
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
-        widget:set_markup(markup.font(theme.font, title .. markup(theme.fg_focus, artist)))
-    end
-})
+-- Porcentaje de uso de la CPU
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 
--- ALSA volume
-local volicon = wibox.widget.imagebox()
-theme.volume = lain.widget.alsabar({
-    --togglechannel = "IEC958,3",
-    notification_preset = { font = "Monospace 12", fg = theme.fg_normal },
-    settings = function()
-        local index, perc = "", tonumber(volume_now.level) or 0
+-- Control de volúmen
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 
-        if volume_now.status == "off" then
-            index = "volmutedblocked"
-        else
-            if perc <= 5 then
-                index = "volmuted"
-            elseif perc <= 25 then
-                index = "vollow"
-            elseif perc <= 75 then
-                index = "volmed"
-            else
-                index = "volhigh"
-            end
-        end
+-- Control para cerrar sesión
+local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 
-        volicon:set_image(theme[index])
-    end
-})
-volicon:buttons(my_table.join (
-          awful.button({}, 1, function()
-            awful.spawn(string.format("%s -e alsamixer", awful.util.terminal))
-          end),
-          awful.button({}, 2, function()
-            os.execute(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
-            theme.volume.notify()
-          end),
-          awful.button({}, 3, function()
-            os.execute(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
-            theme.volume.notify()
-          end),
-          awful.button({}, 4, function()
-            os.execute(string.format("%s set %s 1%%+", theme.volume.cmd, theme.volume.channel))
-            theme.volume.notify()
-          end),
-          awful.button({}, 5, function()
-            os.execute(string.format("%s set %s 1%%-", theme.volume.cmd, theme.volume.channel))
-            theme.volume.notify()
-          end)
-))
+-- Velocidad de internet
+local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
+
+-- Memoria RAM
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 -- Wifi carrier and signal strength
 local wificon = wibox.widget.imagebox(theme.wifidisc)
@@ -278,17 +194,6 @@ local mywifisig = awful.widget.watch(
 )
 wificon:connect_signal("button::press", function() awful.spawn(string.format("%s -e wavemon", awful.util.terminal)) end)
 
--- Weather
---[[ to be set before use
-theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
-    notification_preset = { font = "Monospace 10" },
-    settings = function()
-        units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(" " .. markup.font(theme.font, units .. "°C") .. " ")
-    end
-})
---]]
 
 -- Launcher
 local mylauncher = awful.widget.button({image = theme.awesome_icon})
@@ -411,7 +316,7 @@ function theme.at_screen_connect(s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
-    s.mypromptbox.bg = "#00000000"
+    s.mypromptbox.bg = "#e5be6f"
 
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
@@ -436,18 +341,19 @@ function theme.at_screen_connect(s)
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, awful.util.tasklist_buttons, { fg_focus = "#ffffff" })
 
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = "#000000"  })
+    -- BarraSuperior
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = "#252420"  })
+    
+    -- Barra inferior
+    s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, height = dpi(24), bg = "#252420" , fg = "white" })
 
-    -- Add widgets to the wibox
+    -- Agregamos los widgets a la barra inferior
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         expand = "none",
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            s.mypromptbox,
-            tspace1,
-            s.mytasklist,
+            s.mypromptbox
         },
         { -- Middle widgets
             layout = wibox.layout.flex.horizontal,
@@ -456,20 +362,57 @@ function theme.at_screen_connect(s)
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget { nil, nil, theme.mpd.widget, layout = wibox.layout.align.horizontal },
+            wibox.widget { nil, nil, nil, layout = wibox.layout.align.horizontal },
+            net_speed_widget(),
             rspace0,
-            --theme.weather.icon,
-            --theme.weather.widget,
+            cpu_widget({
+				width = 40,
+				step_width = 4,
+				step_spacing = 0,
+				color = '#ffffff'
+			}),
+			ram_widget({
+				color_used = "#fb9c52",
+				color_buf = "#ff7000",
+				color_free = "#fefefe"
+			}),
             rspace1,
-            baticon,
+            battery_widget(),
             rspace2,
-            volicon,
-            rspace3,
-            wificon,
+            volume_widget{
+				widget_type = 'arc',
+				size = 25,
+				mute_color = "#ff0404",
+				main_color = "#04ff0b",
+				bg_color = "#000000",
+				thickness = 3
+            },
             rspace0,
-            s.layoutb
-          -- wibox.widget.systray(),
+			logout_popup.widget{
+				 bg_color = "#262832", accent_color = "#5d7797", text_color = '#66fce1', icon_size = 30,
+				phrases = {""},},
         },
+    }
+    
+    -- Agregamos los widgets a la barra inferior
+	s.mywiboxbottom:setup {
+        layout = wibox.layout.align.horizontal,
+        {
+	    -- Items de la izquierda
+            layout = wibox.layout.fixed.horizontal,
+            
+        },
+        -- Items del medio (lista de programas, generalmente muestra el nombre del programa activo)
+        {
+			layout = wibox.layout.fixed.horizontal,
+			
+        },
+        {
+	     -- Item de la derecha (layout manager)
+            layout = wibox.layout.fixed.horizontal,
+			s.layoutb,
+        },
+    
     }
 
     gears.timer.delayed_call(theme.vertical_wibox, s)
