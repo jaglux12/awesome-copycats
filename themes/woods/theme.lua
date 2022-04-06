@@ -22,7 +22,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
 theme.icon_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/woods/icons"
-theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/themes/woods/wallpapers/woods1.jpg"
+theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/themes/woods/wallpapers/woods4.jpg"
 theme.font                                      = "Arial 10"
 theme.taglist_font                              = "FontAwesome 17"
 theme.fg_normal                                 = "#707070"
@@ -39,82 +39,12 @@ theme.tooltip_border_color                      = theme.fg_focus
 theme.tooltip_border_width                      = theme.border_width
 theme.menu_height                               = dpi(30)
 theme.menu_width                                = dpi(140)
-theme.awesome_icon                              = theme.icon_dir .. "/pino.png"
 theme.taglist_squares_sel                       = gears.surface.load_from_shape(dpi(1), dpi(30), gears.shape.rectangle, theme.fg_focus)
 theme.taglist_squares_unsel                     = gears.surface.load_from_shape(dpi(1), dpi(30), gears.shape.rectangle, theme.bg_focus2)
-theme.panelbg                                   = theme.icon_dir .. "/"
-theme.bat000charging                            = theme.icon_dir .. "/bat-000-charging.png"
-theme.bat000                                    = theme.icon_dir .. "/bat-000.png"
-theme.bat020charging                            = theme.icon_dir .. "/bat-020-charging.png"
-theme.bat020                                    = theme.icon_dir .. "/bat-020.png"
-theme.bat040charging                            = theme.icon_dir .. "/bat-040-charging.png"
-theme.bat040                                    = theme.icon_dir .. "/bat-040.png"
-theme.bat060charging                            = theme.icon_dir .. "/bat-060-charging.png"
-theme.bat060                                    = theme.icon_dir .. "/bat-060.png"
-theme.bat080charging                            = theme.icon_dir .. "/bat-080-charging.png"
-theme.bat080                                    = theme.icon_dir .. "/bat-080.png"
-theme.bat100charging                            = theme.icon_dir .. "/bat-100-charging.png"
-theme.bat100                                    = theme.icon_dir .. "/bat-100.png"
-theme.batcharged                                = theme.icon_dir .. "/bat-charged.png"
-theme.ethon                                     = theme.icon_dir .. "/ethernet-connected.png"
-theme.ethoff                                    = theme.icon_dir .. "/ethernet-disconnected.png"
-theme.volhigh                                   = theme.icon_dir .. "/volume-high.png"
-theme.vollow                                    = theme.icon_dir .. "/volume-low.png"
-theme.volmed                                    = theme.icon_dir .. "/volume-medium.png"
-theme.volmutedblocked                           = theme.icon_dir .. "/volume-muted-blocked.png"
-theme.volmuted                                  = theme.icon_dir .. "/volume-muted.png"
-theme.voloff                                    = theme.icon_dir .. "/volume-off.png"
-theme.wifidisc                                  = theme.icon_dir .. "/wireless-disconnected.png"
-theme.wififull                                  = theme.icon_dir .. "/wireless-full.png"
-theme.wifihigh                                  = theme.icon_dir .. "/wireless-high.png"
-theme.wifilow                                   = theme.icon_dir .. "/wireless-low.png"
-theme.wifimed                                   = theme.icon_dir .. "/wireless-medium.png"
-theme.wifinone                                  = theme.icon_dir .. "/wireless-none.png"
-theme.layout_fairh                              = theme.default_dir.."/layouts/fairhw.png"
-theme.layout_fairv                              = theme.default_dir.."/layouts/fairvw.png"
-theme.layout_floating                           = theme.default_dir.."/layouts/floatingw.png"
-theme.layout_magnifier                          = theme.default_dir.."/layouts/magnifierw.png"
-theme.layout_max                                = theme.default_dir.."/layouts/maxw.png"
-theme.layout_fullscreen                         = theme.default_dir.."/layouts/fullscreenw.png"
-theme.layout_tilebottom                         = theme.default_dir.."/layouts/tilebottomw.png"
-theme.layout_tileleft                           = theme.default_dir.."/layouts/tileleftw.png"
-theme.layout_tile                               = theme.default_dir.."/layouts/tilew.png"
-theme.layout_tiletop                            = theme.default_dir.."/layouts/tiletopw.png"
-theme.layout_spiral                             = theme.default_dir.."/layouts/spiralw.png"
-theme.layout_dwindle                            = theme.default_dir.."/layouts/dwindlew.png"
-theme.layout_cornernw                           = theme.default_dir.."/layouts/cornernww.png"
-theme.layout_cornerne                           = theme.default_dir.."/layouts/cornernew.png"
-theme.layout_cornersw                           = theme.default_dir.."/layouts/cornersww.png"
-theme.layout_cornerse                           = theme.default_dir.."/layouts/cornersew.png"
-theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = false
-theme.useless_gap                               = dpi(10)
-theme.titlebar_close_button_normal              = theme.default_dir.."/titlebar/close_normal.png"
-theme.titlebar_close_button_focus               = theme.default_dir.."/titlebar/close_focus.png"
-theme.titlebar_minimize_button_normal           = theme.default_dir.."/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus            = theme.default_dir.."/titlebar/minimize_focus.png"
-theme.titlebar_ontop_button_normal_inactive     = theme.default_dir.."/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive      = theme.default_dir.."/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active       = theme.default_dir.."/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active        = theme.default_dir.."/titlebar/ontop_focus_active.png"
-theme.titlebar_sticky_button_normal_inactive    = theme.default_dir.."/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive     = theme.default_dir.."/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active      = theme.default_dir.."/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active       = theme.default_dir.."/titlebar/sticky_focus_active.png"
-theme.titlebar_floating_button_normal_inactive  = theme.default_dir.."/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive   = theme.default_dir.."/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active    = theme.default_dir.."/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active     = theme.default_dir.."/titlebar/floating_focus_active.png"
-theme.titlebar_maximized_button_normal_inactive = theme.default_dir.."/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = theme.default_dir.."/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active   = theme.default_dir.."/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active    = theme.default_dir.."/titlebar/maximized_focus_active.png"
 
 -- http://fontawesome.io/cheatsheet
 awful.util.tagnames = { "", "" ,"","", "", "", "", "", "" }
-
 local markup = lain.util.markup
-
 
 -- Reloj y calendario de la parte superior
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
@@ -151,49 +81,6 @@ local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed"
 
 -- Memoria RAM
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
-
--- Wifi carrier and signal strength
-local wificon = wibox.widget.imagebox(theme.wifidisc)
-local wifitooltip = awful.tooltip({
-    objects = { wificon },
-    margin_leftright = dpi(0),
-    margin_topbottom = dpi(0)
-})
-wifitooltip.wibox.fg = theme.fg_normal
-wifitooltip.textbox.font = theme.font
-wifitooltip.timeout = 0
-wifitooltip:set_shape(function(cr, width, height)
-    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - dpi(120))
-end)
-local mywifisig = awful.widget.watch(
-    { awful.util.shell, "-c", "awk 'NR==3 {printf(\"%d-%.0f\\n\",$2, $3*10/7)}' /proc/net/wireless; iw dev wlan0 link" },
-    2,
-    function(widget, stdout)
-        local carrier, perc = stdout:match("(%d)-(%d+)")
-        local tiptext = stdout:gsub("(%d)-(%d+)", ""):gsub("%s+$", "")
-        perc = tonumber(perc)
-
-        if carrier == "1" or not perc then
-            wificon:set_image(theme.wifidisc)
-            wifitooltip:set_markup("No carrier")
-        else
-            if perc <= 5 then
-                wificon:set_image(theme.wifinone)
-            elseif perc <= 25 then
-                wificon:set_image(theme.wifilow)
-            elseif perc <= 50 then
-                wificon:set_image(theme.wifimed)
-            elseif perc <= 75 then
-                wificon:set_image(theme.wifihigh)
-            else
-                wificon:set_image(theme.wififull)
-            end
-            wifitooltip:set_markup(tiptext)
-        end
-    end
-)
-wificon:connect_signal("button::press", function() awful.spawn(string.format("%s -e wavemon", awful.util.terminal)) end)
-
 
 -- Launcher
 local mylauncher = awful.widget.button({image = theme.awesome_icon})
@@ -266,8 +153,6 @@ function theme.vertical_wibox(s)
     s.docktimer:connect_signal("timeout", function()
         local s = awful.screen.focused()
         s.myleftwibox.width = dpi(1)
-        --s.layoutb.visible = false
-        --mylauncher.visible = false
         if s.docktimer.started then
             s.docktimer:stop()
         end
@@ -327,13 +212,14 @@ function theme.at_screen_connect(s)
                            awful.button({}, 3, function () awful.layout.inc(-1) end),
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
+    
     s.layoutb = s.mylayoutbox
 
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons, {
         font = theme.taglist_font,
         shape = gears.shape.rectangle,
-        spacing = dpi(15),
+        spacing = dpi(14),
         square_unsel = theme.square_unsel,
         bg_focus = barcolor
     }, nil, wibox.layout.fixed.vertical())
@@ -342,7 +228,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, awful.util.tasklist_buttons, { fg_focus = "#ffffff" })
 
     -- BarraSuperior
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = "#252420"  })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = "#252420" , fg = "white" })
     
     -- Barra inferior
     s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, height = dpi(24), bg = "#252420" , fg = "white" })

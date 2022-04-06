@@ -4,9 +4,9 @@
      	Powerarrow Awesome WM theme
      	github.com/lcpz
 
-     Powercolors:
-	Powercolors Awesome WM
-	github.com/jaglux12
+	 Powercolors:
+		Powercolors Awesome WM theme
+		github.com/jaglux12
 
 --]]
 
@@ -17,12 +17,18 @@ local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 
 local math, string, os = math, string, os
-local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
+local my_table = awful.util.table or gears.table
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powercolors"
-theme.wallpaper                                 = theme.dir .. "/wallpapers/fondo_de_pantalla.png"
+
+-- Fondo de pantalla
+theme.wallpaper                                 = theme.dir .. "/wallpaper/background.png"
+
+-- Fuente
 theme.font                                      = "Terminus 10"
+
+-- Colores
 theme.fg_normal                                 = "#FEFEFE"
 theme.fg_focus                                  = "#32D6FF"
 theme.fg_urgent                                 = "#C83F11"
@@ -32,7 +38,6 @@ theme.bg_urgent                                 = "#3F3F3F"
 theme.taglist_fg_focus                          = "#00CCFF"
 theme.tasklist_bg_focus                         = "#222222"
 theme.tasklist_fg_focus                         = "#FFFFFF"
-theme.border_width                              = dpi(2)
 theme.border_normal                             = "#3F3F3F"
 theme.border_focus                              = "#6F6F6F"
 theme.border_marked                             = "#CC9393"
@@ -41,8 +46,13 @@ theme.titlebar_bg_normal                        = "#3F3F3F"
 theme.titlebar_bg_focus                         = theme.bg_focus
 theme.titlebar_bg_normal                        = theme.bg_normal
 theme.titlebar_fg_focus                         = theme.fg_focus
+
+-- Tamaños
+theme.border_width                              = dpi(10)
 theme.menu_height                               = dpi(30)
 theme.menu_width                                = dpi(160)
+
+-- Iconos
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
@@ -62,9 +72,6 @@ theme.widget_temp                               = theme.dir .. "/icons/temp.png"
 theme.widget_net                                = theme.dir .. "/icons/net.png"
 theme.widget_task                               = theme.dir .. "/icons/task.png"
 theme.widget_scissors                           = theme.dir .. "/icons/reloj.png"
-theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = 0
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -84,53 +91,39 @@ theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
+theme.tasklist_plain_task_name                  = true
+theme.tasklist_disable_icon                     = true
+theme.useless_gap                               = 0
+
+
 local markup = lain.util.markup
 local separators = lain.util.separators
 local white = theme.fg_focus
 
 -- Reloj
-local mytextclock = wibox.widget.textclock(markup("#FFFFFF", " %H:%M "))
-mytextclock.font = "Terminus 9"
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
--- Calendario (se despliega cuando pasamos el puntero por encima de la hora)
-theme.cal = lain.widget.cal({
-    attach_to = { mytextclock },
-    notification_preset = {
-        font = "Terminus 9",
-        fg   = "#FFFFFF",
-        bg   = "#000000"
-    }
+mytextclock = wibox.widget.textclock()
+local cw = calendar_widget({
+    theme = 'dark',
+    placement = 'top_right',
+    start_sunday = true,
+    radius = 8,
+    previous_month_button = 1,
+    next_month_button = 3,
 })
+mytextclock:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
+
 
 -- Batería
-local baticon = wibox.widget.imagebox(theme.widget_battery)
-local bat = lain.widget.bat({
-    settings = function()
-        if bat_now.status and bat_now.status ~= "N/A" then
-            if bat_now.ac_status == 1 then
-                baticon:set_image(theme.widget_ac)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-                baticon:set_image(theme.widget_battery_empty)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-                baticon:set_image(theme.widget_battery_low)
-            else
-                baticon:set_image(theme.widget_battery)
-            end
-            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
-        else
-            widget:set_markup(markup.font(theme.font, " AC "))
-            baticon:set_image(theme.widget_ac)
-        end
-    end
-})
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 -- Memoria RAM utilizada
 local memicon = wibox.widget.imagebox(theme.widget_mem)
-local mem = lain.widget.mem({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
-    end
-})
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 -- Muestra el uso de la CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
@@ -221,7 +214,8 @@ function theme.at_screen_connect(s)
 
     -- Creamos las barras de herramientas
     -- Barra superior (muestra la hora, cpu en uso, net, etc)
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(16), bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = theme.bg_normal, fg = theme.fg_normal })
+    
     -- Barra inferior (muestra el nombre del programa en uso y el layout manager)
     s.mywiboxbottom = awful.wibar({ position = "bottom", screen = s, height = dpi(18), bg = theme.bg_normal, fg = "white" })
 
@@ -236,18 +230,30 @@ function theme.at_screen_connect(s)
         },
 	nil,
         {
-	    -- Right widgets / Items de la derecha (memoria ram,cpu,temperatura,net,hora)
-            layout = wibox.layout.fixed.horizontal,
-	    baticon,
-	    bat.widget,
-            arrow(theme.bg_normal, "#40b9d1"),
-            wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#40b9d1"),
-            arrow("#40b9d1", "#4d40d1"),
-            wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(4)), "#4d40d1"),
+	    -- Items de la derecha (memoria ram,cpu,temperatura,net,hora)
+        layout = wibox.layout.fixed.horizontal,
+        
+	    battery_widget({
+			margin_right = 5,
+			notification_position = "bottom_right",
+			warning_msg_title = "Batería baja",
+			warning_msg_text = "Atención",
+			warning_msg_position = "bottom_right",
+			font = theme.font
+	    }),
+	    
+        arrow(theme.bg_normal, "#40b9d1"),
+        wibox.container.background(wibox.container.margin(wibox.widget { nil, ram_widget(), layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#40b9d1"),
+        
+        arrow("#40b9d1", "#4d40d1"),
+        wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(4)), "#4d40d1"),
+	    
 	    arrow("#4d40d1", "#7940d1"),
 	    wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#7940d1"),
-            arrow("#7940d1", "#9c40d1"),
-            wibox.container.background(wibox.container.margin(wibox.widget { neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#9c40d1"),
+        
+        arrow("#7940d1", "#9c40d1"),
+        wibox.container.background(wibox.container.margin(wibox.widget { neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#9c40d1"),
+	    
 	    arrow("#9c40d1", "#000000"),
 	    wibox.container.background(wibox.container.margin(wibox.widget { brighticon, mytextclock, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#000000"),
         },
